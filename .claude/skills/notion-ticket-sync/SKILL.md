@@ -49,3 +49,6 @@ After updating the Release Notes entry and ticket Status, look up the ticket's P
 
 ## Tag every Release Notes entry with what it touched
 When creating a Release Notes entry, always set "Odoo models/modules touched" to the actual Odoo model(s) (e.g. res.partner, sale.order) and/or addon technical name(s) the change affected. This is required, not optional -- it's what makes future context-checking cheap instead of requiring every entry to be read in full.
+
+## Release Notes structure: minimal properties, content in the page body
+The Release Notes & Feature Log database only has Feature, Project, Ticket, PR link, Odoo models/modules touched, Delivered, Date shipped as properties. Test summary and Edge cases found go into the page body as markdown headers (## Test summary, ## Edge cases found), copied verbatim from the PR description as before -- not as database properties.
