@@ -86,3 +86,10 @@ Any skill that changes a ticket's Status must: (1) add a dated comment to the ti
 ## What needs a PR vs. what can push directly to master
 Code changes (anything in addons/, docker-compose.yml, odoo.conf) always go through a branch + PR + review, no exceptions.
 Pure documentation/context files that don't affect the running application (.claude/context/*, CLAUDE.md itself, skill files) can be committed and pushed directly to master. Still show the human the diff before pushing, since accuracy is the only thing being checked -- but a full PR cycle for a documentation correction is unnecessary ceremony.
+
+## Notion content formatting: use real line breaks, guard against auto-links
+When writing markdown content to Notion pages (PRDs, Release Notes, ticket bodies), use actual newline characters between blocks/paragraphs -- never rely on literal "\n" escape sequences embedded in a single string, since this has been observed to render as a literal "n" character instead of a line break. Write multi-paragraph content as genuinely separate lines, or use multiple smaller content insertions if unsure.
+
+Wrap filenames, code, and anything containing a dot followed by letters (e.g. test_file.py) in inline code backticks. Notion's link auto-detection will otherwise turn bare filenames into unwanted hyperlinks (e.g. "urgent.py" became a link to a nonexistent "urgent.py" domain).
+
+After writing any substantial content block to Notion, fetch the page back once to confirm it rendered as intended before moving on -- catching a formatting bug immediately is far cheaper than discovering five broken pages later.
