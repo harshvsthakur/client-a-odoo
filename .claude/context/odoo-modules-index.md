@@ -4,6 +4,8 @@ One row per shipped module. This is the FIRST thing to check for "what already e
 
 | Module | Model(s) touched | What it does | Ticket | Notion Release Note | Notes/quirks |
 |---|---|---|---|---|---|
-| custom_contact_notes | res.partner | Adds vip_notes text field, shown as tab | TCK-1 (pre-ticket) | (link) | |
-| partner_priority_client | res.partner | Adds is_priority_client boolean, priority_level selection | TCK-2 | (link) | Required field on upgrade auto-backfills default |
-| partner_contact_preference | res.partner | Adds preferred contact channel field | TCK-3 | (link) | |
+| custom_contact_notes | res.partner | Adds vip_notes text field, shown as tab | (pre-ticket) | (link) | |
+| partner_priority_client | res.partner | Adds is_priority_client boolean, priority_level selection | (pre-ticket) | (link) | Required field on upgrade auto-backfills default |
+| partner_urgency_flag | res.partner | Adds is_urgent boolean flag | TCK-2 | https://app.notion.com/p/Add-urgency-flag-to-Contacts-3948a366581581d58184fc01a1c44ed4 | |
+| partner_contact_preference | res.partner | Adds preferred contact channel field (contact_preference selection) | TCK-3 | https://app.notion.com/p/Add-contact_preference-field-to-res-partner-3948a366581581538b26ebd7641c156a | Writing any res.partner field requires the Contact Creation group (base.group_partner_manager), not just base.group_user -- pre-existing, unrelated to this field (see TCK-4) |
+| project_sale_order_ux | project.project | Reorders Projects app to default List view; adds a Project -> Sales Order smart button (reuses core sale_project's sale_order_id field, no new field) | TCK-5 | https://app.notion.com/p/Default-Projects-list-view-Project-Sales-Order-smart-button-3948a3665815816da270d57fe95c1136 | Button gated to sales_team.group_sale_salesman -- a plain project user without Sales access would otherwise hit an AccessError opening the linked sale.order |
