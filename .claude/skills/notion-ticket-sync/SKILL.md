@@ -34,3 +34,6 @@ State plainly: which ticket was updated, and a link to the new Release Notes row
 
 ## If anything is ambiguous
 If more than one ticket matches, or the Project relation is missing/unclear, stop and ask the human rather than guessing which record to update.
+
+## Never create new Clients or Projects silently
+If a ticket has no Project relation set, stop and ask the human which existing Project it belongs to, or whether a new one should be created. Never create a new Project or Client record without explicit confirmation.
