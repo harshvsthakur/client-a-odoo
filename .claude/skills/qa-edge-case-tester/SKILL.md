@@ -47,3 +47,9 @@ Edge cases found: anything unexpected, any judgment calls made, anything the rev
 Never mark a PR ready for review without having completed steps 1-3 first.
 ## Notify the owner channel only on real failures
 If the automated test run actually fails, or a genuine bug is found and fixed before the PR opens, post to SLACK_OWNER_CHANNEL_ID: which ticket/project, what failed, and whether it was fixed or needs human input. Do not post anything here when tests simply pass -- that's routine and belongs in the project channel only.
+
+## Scale testing to the PRD's test tier
+Check the linked PRD's test tier before testing.
+- Trivial: run only a minimal smoke test -- confirm the module installs cleanly and do one basic create/read check via odoo shell. Skip the full edge-case matrix (special characters, concurrency, access rights, boundary values).
+- Standard or Complex: run the full process as originally defined in this skill, unabridged.
+Whichever tier applies, still fill in "Test summary" and "Edge cases found" in the PR description -- for Trivial, explicitly state "Trivial tier: minimal smoke test only, full edge-case testing skipped per ticket classification" rather than leaving it blank or implying full coverage happened.

@@ -71,3 +71,10 @@ After drafting a PRD and setting its Review status to "Needs your review," also 
 
 ## Notify the owner channel on rework
 Whenever Rework count is incremented on a ticket, post to SLACK_OWNER_CHANNEL_ID: which ticket/project, and why (new requirement, misunderstood scope, etc.) -- this is a pattern worth the owner seeing across all projects, not just logged quietly in a comment.
+
+## Classify test tier as part of the PRD
+As part of drafting the PRD, classify the work as one of: Trivial, Standard, Complex.
+- Trivial: a single non-required field, no computed logic, no constraints, no cross-model impact.
+- Standard (default): anything else contained to a single model.
+- Complex: computed fields, cross-model logic, workflow/approval logic, financial or quantity calculations, or anything client-facing/integration-related.
+Record this classification explicitly in the PRD's "Technical approach" field and in the ticket page body, with a one-line reason for the classification. Never leave it unstated.
