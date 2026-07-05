@@ -43,3 +43,6 @@ The "never create silently" rule also covers *linking* decisions, not just brand
 
 ## Populate GitHub repo on Project creation
 When creating or linking a Project, also set its "GitHub repo" property to the repo's URL if known (e.g. from the current git remote). Never leave it blank if the information is available.
+
+## Also notify the project's Slack channel
+After updating the Release Notes entry and ticket Status, look up the ticket's Project record and read its "Slack channel" property. If present, post a short message there via chat.postMessage (SLACK_BOT_TOKEN env var) summarizing what shipped, with the PR link. If the Project has no Slack channel set, skip this step silently -- don't treat it as an error.
