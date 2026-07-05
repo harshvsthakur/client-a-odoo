@@ -52,3 +52,6 @@ When creating a Release Notes entry, always set "Odoo models/modules touched" to
 
 ## Release Notes structure: minimal properties, content in the page body
 The Release Notes & Feature Log database only has Feature, Project, Ticket, PR link, Odoo models/modules touched, Delivered, Date shipped as properties. Test summary and Edge cases found go into the page body as markdown headers (## Test summary, ## Edge cases found), copied verbatim from the PR description as before -- not as database properties.
+
+## Include brief UI testing steps in Release Notes
+Add a third body section, "## How to test in the UI", copied/adapted from the PR's "How to verify manually" section. Keep it brief -- a short numbered list only (e.g. "1. Open Contacts, click any record. 2. Confirm the 'Priority Level' dropdown appears next to Priority Client, defaulting to Medium."). No prose, no restating the technical implementation -- just the concrete clicks/checks a human needs to visually confirm the feature works.
