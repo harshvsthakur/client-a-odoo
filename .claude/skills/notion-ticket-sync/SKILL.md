@@ -58,3 +58,8 @@ Add a third body section, "## How to test in the UI", copied/adapted from the PR
 
 ## UI verification: leave for a human, don't auto-verify
 When creating a Release Notes entry, always set "UI verification" to "Not yet verified" and leave "Verified by" empty -- never set this to "Verified" yourself, even if your own automated/manual testing passed. This property specifically represents a human visually confirming the feature in the browser, which is a distinct guarantee from your own QA. If the Project has assigned testers (check for a "Default tester" person set on the Project, once that exists), mention it in your summary to the human, but do not assign it yourself without being told to.
+
+## Auto-assign UI verification from the Project's default testers
+When creating a Release Notes entry, check the linked Project's "Default testers" property. If it has one or more people set, copy them into the Release Note's "Verified by" field (still leave "UI verification" as "Not yet verified" -- assigning who should test is not the same as them having tested it). If "Default testers" is empty, leave "Verified by" empty too and mention in your summary that no default tester is set for this project.
+
+If the Project has a Slack channel and default testers, the ship notification should @-mention them (if Slack usernames/IDs are known) rather than just posting generically -- makes clear whose turn it is to verify.
