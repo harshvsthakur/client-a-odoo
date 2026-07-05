@@ -85,3 +85,6 @@ Before reading Release Notes in full, first identify which Odoo model(s) or addo
 Similarly, when grepping addons/ for existing customizations, search specifically for the relevant model name(s) (e.g. grep for "res.partner" or the specific field/view names in question) rather than reading every module's full source. Only read a module's full contents if the targeted grep suggests it's actually relevant.
 
 If a ticket genuinely touches an unclear or broad set of models, it's fine to widen the search -- the goal is targeted, not artificially narrow.
+
+## Token efficiency: check the local index before anything expensive
+Before grepping addons/ or querying Notion Release Notes, first read .claude/context/odoo-modules-index.md. If it answers "what's already built that's relevant to this ticket," use that and skip the expensive full scan entirely. Only fall back to grepping addons/ or querying Notion if the index is missing, incomplete, or seems stale for what you need to know.
