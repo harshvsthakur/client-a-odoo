@@ -37,3 +37,6 @@ Never merge without an explicit human instruction to do so.
 
 ## After merging, sync to Notion
 Once the merge-and-deploy sequence above completes, also apply the notion-ticket-sync skill if the PR is linked to a Ticket ID.
+
+## Check for technical naming conflicts before writing code
+Before adding a new field or view to an existing model, grep addons/ for the exact field name and any XML record IDs you're about to introduce, on that same model. If something already uses the same name, either reuse/extend it (per the "check for existing customizations" step) or pick a distinctly different name -- don't rely on the install step to be the first thing that catches a collision.
