@@ -35,3 +35,17 @@ Do not proceed to writing any code. Tell the human the PRD is ready for review a
 
 ## If the ticket is genuinely too vague to draft a reasonable PRD
 Don't guess wildly to fill gaps. List the specific missing information as questions in the PRD's "Risks / open questions" field, set Review status to "Needs your review", and stop -- the human will either answer inline or update the ticket.
+
+## Also write the summary into the ticket's own page body
+In addition to creating the linked PRD database row, write a concise summary directly into the Ticket page's content (not just its properties) using these headings:
+
+### Requirements
+What's being built, in plain language, including anything inferred.
+
+### What's already built (context checked)
+Relevant existing modules/features found in addons/ and Release Notes, and how this relates to them.
+
+### Open questions
+Anything genuinely ambiguous that needs human input before building -- omit this heading entirely if there are none.
+
+Append this under the ticket's existing content rather than replacing anything already there. This makes the ticket readable on its own, without requiring someone to open the linked PRD record to understand the plan.
