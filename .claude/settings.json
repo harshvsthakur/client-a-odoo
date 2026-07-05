@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "odoo-conventions-market": {
+      "source": {
+        "source": "directory",
+        "path": "/home/harshvsthakur/dev/claude-plugins/odoo-conventions"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "odoo-conventions@odoo-conventions-market": true
+  }
+}

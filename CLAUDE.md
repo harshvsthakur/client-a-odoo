@@ -1,6 +1,9 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this
+repository. Process-level conventions (Notion workflow, PR policy, documentation standards, token
+efficiency, activity logging) live in the global `~/.claude/CLAUDE.md` and apply here unchanged --
+this file only covers what's specific to this project.
 
 ## Project overview
 
@@ -53,43 +56,33 @@ database creation through the web UI.
 - After adding or changing a module, upgrade/install it with `-u`/`-i` as shown above, or use
   Odoo's Apps UI, then restart the `odoo` service so changes take effect.
 
-## Notion access — scope restriction
+## Testing
 
-Only use the "notion" (stdio, token-scoped) MCP server for anything Notion-related. Never use the "claude.ai Notion" connector for this project — it authenticates with full personal workspace permissions and is not scoped to this project.
+Dev database: `harsh-test`. Command patterns (test run, manual REPL, test file conventions) come from the `odoo-conventions:odoo-module-dev` skill (the shared `odoo-conventions` plugin) -- substitute `harsh-test` for its `<dev_database>` placeholder.
 
-Within Notion, only interact with the Tickets database under the Solopreneur Ops page (and its directly related PRDs / Release Notes / Project rows via that database's relations). Do not search, fetch, or reference any other Notion page or database, even if tools make it technically reachable.
+## Codebase conventions
 
-If the "notion" stdio server is unavailable in a given session, stop and tell the human rather than falling back to the claude.ai Notion connector.
+- Existing customizations: search `addons/` for the relevant Odoo model/field/view names before assuming something doesn't already exist.
+- Local index: check `.claude/context/odoo-modules-index.md` first -- it tracks every shipped module, the model(s) it touches, its ticket/Release Note link, and any quirks worth remembering. Cheaper than a full `addons/` scan or a Release Notes query; only fall back to those if the index is missing, incomplete, or stale.
 
-## Linking work to Notion tickets
-When a task originates from a Notion ticket, include its Ticket ID in the branch name and PR title, e.g. branch feature/TCK-3-priority-level-field, PR title "[TCK-3] Add priority_level field to res.partner". This is how merged PRs get linked back to Notion automatically.
+## What counts as code
 
-## Working a ticket -- always start with requirements analysis
-When asked to work on a ticket (e.g. "work on ticket TCK-N"), always apply ticket-requirements-analyst first. Do not write code until a PRD exists and its Review status is Approved. Only then apply odoo-module-dev, followed by qa-edge-case-tester, followed by the PR/merge/notion-ticket-sync flow already defined.
+Code (always needs a branch + PR + review, no exceptions): anything in `addons/`, `docker-compose.yml`, `odoo.conf`.
 
-## Documentation standard for future analysis
-Everything written to Notion (ticket bodies, PRDs, Release Notes) should assume it will be read and analyzed later without this conversation's context. This means:
-- Always link to real Notion pages/records referenced, never just name them in prose.
-- Always record explicit human decisions (not just proposed defaults that were silently accepted) as their own visible entry, not folded invisibly into other text.
-- Prefer structured headings over freeform paragraphs, so future analysis (by a human or an AI) can reliably find "what was decided," "what was tested," "what shipped" without re-reading everything.
-- When in doubt about whether something is worth writing down, write it down -- the cost of over-documenting a ticket is small; the cost of an undocumented decision six months from now is not.
+Pure documentation/context (can push directly to master, after showing the human the diff): `.claude/context/*`, this `CLAUDE.md`, skill files under `.claude/skills/`.
 
-## Ticket activity logging
-Any skill that changes a ticket's Status must: (1) add a dated comment to the ticket page explaining the change, and (2) set the corresponding milestone date property on the Tickets database if one exists (Date PRD drafted, Date approved, Date in progress, Date shipped). This applies to odoo-module-dev, qa-edge-case-tester, notion-ticket-sync, and ticket-requirements-analyst alike -- log at every status transition, not just at the end.
+## Deploying an update
 
-## Token efficiency is a standing priority, for every skill
-- Prefer a small, maintained reference/index over re-deriving the same information from scratch repeatedly (grepping the whole codebase, reading every historical record). If something is being re-derived often and no reference exists for it, create one and keep it updated -- don't just note the inefficiency and move on.
-- When querying Notion, always filter (by relation, by tag, by property) rather than pulling entire databases. Only fetch full page content for rows that actually matched a filter.
-- Local files are cheaper to read than MCP round-trips where either would work -- prefer a local index over a Notion query when the same information is available both places.
-- Don't re-read something already established earlier in the same session.
+Dev database: `harsh-test` (same as "Testing" above). Command pattern comes from the `odoo-conventions:odoo-module-dev` skill; it also carries the cache-busting reminder (Odoo's asset bundles are cached aggressively -- hard-refresh with Ctrl+Shift+R after deploying).
 
-## What needs a PR vs. what can push directly to master
-Code changes (anything in addons/, docker-compose.yml, odoo.conf) always go through a branch + PR + review, no exceptions.
-Pure documentation/context files that don't affect the running application (.claude/context/*, CLAUDE.md itself, skill files) can be committed and pushed directly to master. Still show the human the diff before pushing, since accuracy is the only thing being checked -- but a full PR cycle for a documentation correction is unnecessary ceremony.
+## Ticket workflow for this project
 
-## Notion content formatting: use real line breaks, guard against auto-links
-When writing markdown content to Notion pages (PRDs, Release Notes, ticket bodies), use actual newline characters between blocks/paragraphs -- never rely on literal "\n" escape sequences embedded in a single string, since this has been observed to render as a literal "n" character instead of a line break. Write multi-paragraph content as genuinely separate lines, or use multiple smaller content insertions if unsure.
+When asked to work on a ticket, the pipeline is:
 
-Wrap filenames, code, and anything containing a dot followed by letters (e.g. test_file.py) in inline code backticks. Notion's link auto-detection will otherwise turn bare filenames into unwanted hyperlinks (e.g. "urgent.py" became a link to a nonexistent "urgent.py" domain).
+1. `ticket-requirements-analyst` (global) -- PRD, requires human approval before proceeding.
+2. `odoo-conventions:odoo-module-dev` (project-type plugin, shared across every Odoo project) -- the actual module code and Odoo-specific conventions.
+3. `qa-edge-case-tester` (global) -- testing, using the commands above.
+4. `code-change-workflow` (global) -- branch, PR, and (once approved) merge and deploy.
+5. `notion-ticket-sync` (global) -- after merge, if the PR is linked to a ticket.
 
-After writing any substantial content block to Notion, fetch the page back once to confirm it rendered as intended before moving on -- catching a formatting bug immediately is far cheaper than discovering five broken pages later.
+See `~/.claude/CLAUDE.md` for the process rules (Notion scope, activity logging, documentation standard, token efficiency, PR policy, Notion formatting) that apply throughout this pipeline.
