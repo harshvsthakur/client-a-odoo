@@ -52,3 +52,11 @@ database creation through the web UI.
   `docker-compose.yml` are needed for a new module to be picked up.
 - After adding or changing a module, upgrade/install it with `-u`/`-i` as shown above, or use
   Odoo's Apps UI, then restart the `odoo` service so changes take effect.
+
+## Notion access — scope restriction
+
+Only use the "notion" (stdio, token-scoped) MCP server for anything Notion-related. Never use the "claude.ai Notion" connector for this project — it authenticates with full personal workspace permissions and is not scoped to this project.
+
+Within Notion, only interact with the Tickets database under the Solopreneur Ops page (and its directly related PRDs / Release Notes / Project rows via that database's relations). Do not search, fetch, or reference any other Notion page or database, even if tools make it technically reachable.
+
+If the "notion" stdio server is unavailable in a given session, stop and tell the human rather than falling back to the claude.ai Notion connector.
