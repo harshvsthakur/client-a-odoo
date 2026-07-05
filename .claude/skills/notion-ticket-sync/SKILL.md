@@ -37,3 +37,9 @@ If more than one ticket matches, or the Project relation is missing/unclear, sto
 
 ## Never create new Clients or Projects silently
 If a ticket has no Project relation set, stop and ask the human which existing Project it belongs to, or whether a new one should be created. Never create a new Project or Client record without explicit confirmation.
+
+## Client and Project linking, not just creation
+The "never create silently" rule also covers *linking* decisions, not just brand-new records. If a Project's Client relation is empty, or a new Client/Project had to be created to satisfy a relation, stop and ask the human which existing record to link (list the options found) or confirm before creating a new one. Do not pick automatically, even when there's only one plausible existing candidate.
+
+## Populate GitHub repo on Project creation
+When creating or linking a Project, also set its "GitHub repo" property to the repo's URL if known (e.g. from the current git remote). Never leave it blank if the information is available.
