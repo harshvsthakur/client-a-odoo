@@ -73,3 +73,6 @@ Everything written to Notion (ticket bodies, PRDs, Release Notes) should assume 
 - Always record explicit human decisions (not just proposed defaults that were silently accepted) as their own visible entry, not folded invisibly into other text.
 - Prefer structured headings over freeform paragraphs, so future analysis (by a human or an AI) can reliably find "what was decided," "what was tested," "what shipped" without re-reading everything.
 - When in doubt about whether something is worth writing down, write it down -- the cost of over-documenting a ticket is small; the cost of an undocumented decision six months from now is not.
+
+## Ticket activity logging
+Any skill that changes a ticket's Status must: (1) add a dated comment to the ticket page explaining the change, and (2) set the corresponding milestone date property on the Tickets database if one exists (Date PRD drafted, Date approved, Date in progress, Date shipped). This applies to odoo-module-dev, qa-edge-case-tester, notion-ticket-sync, and ticket-requirements-analyst alike -- log at every status transition, not just at the end.

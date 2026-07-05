@@ -59,3 +59,9 @@ Once the human responds to open questions (either by answering directly, or appr
 2. Append a "### Decisions" section to the ticket page body recording exactly what was decided and by whom (the human, via this conversation) -- this is the durable record of the judgment call, not just an implicit assumption baked into the code.
 3. Set the PRD's Review status to Approved.
 4. Only then proceed to odoo-module-dev.
+
+## Log every status change as a comment, and set milestone dates
+Whenever this skill moves a ticket's Status (e.g. to "PRD drafted"), also:
+1. Add a comment to the ticket page stating what changed, when, and why (e.g. "PRD drafted -- awaiting review on channel list, single/multi-select, and required/optional"). Notion timestamps comments automatically -- don't write the date yourself.
+2. Set the matching milestone date property (e.g. "Date PRD drafted") to today.
+If the human sends the ticket back for rework after PRD review (new requirements, changed answers after work already started), increment "Rework count" by 1 and add a comment explaining what changed and why.
