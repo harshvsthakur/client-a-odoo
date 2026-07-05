@@ -40,3 +40,6 @@ Once the merge-and-deploy sequence above completes, also apply the notion-ticket
 
 ## Check for technical naming conflicts before writing code
 Before adding a new field or view to an existing model, grep addons/ for the exact field name and any XML record IDs you're about to introduce, on that same model. If something already uses the same name, either reuse/extend it (per the "check for existing customizations" step) or pick a distinctly different name -- don't rely on the install step to be the first thing that catches a collision.
+
+## Keep the local index current
+After a module ships (PR merged), add or update its row in .claude/context/odoo-modules-index.md -- module name, model(s) touched, what it does, ticket, Release Note link, any quirks worth remembering (like permission requirements discovered). This is a required step, not optional -- it's what keeps future context-checking cheap. Commit this file alongside the code.
