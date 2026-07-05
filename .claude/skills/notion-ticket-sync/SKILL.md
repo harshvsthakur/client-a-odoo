@@ -55,3 +55,6 @@ The Release Notes & Feature Log database only has Feature, Project, Ticket, PR l
 
 ## Include brief UI testing steps in Release Notes
 Add a third body section, "## How to test in the UI", copied/adapted from the PR's "How to verify manually" section. Keep it brief -- a short numbered list only (e.g. "1. Open Contacts, click any record. 2. Confirm the 'Priority Level' dropdown appears next to Priority Client, defaulting to Medium."). No prose, no restating the technical implementation -- just the concrete clicks/checks a human needs to visually confirm the feature works.
+
+## UI verification: leave for a human, don't auto-verify
+When creating a Release Notes entry, always set "UI verification" to "Not yet verified" and leave "Verified by" empty -- never set this to "Verified" yourself, even if your own automated/manual testing passed. This property specifically represents a human visually confirming the feature in the browser, which is a distinct guarantee from your own QA. If the Project has assigned testers (check for a "Default tester" person set on the Project, once that exists), mention it in your summary to the human, but do not assign it yourself without being told to.
