@@ -76,3 +76,9 @@ Everything written to Notion (ticket bodies, PRDs, Release Notes) should assume 
 
 ## Ticket activity logging
 Any skill that changes a ticket's Status must: (1) add a dated comment to the ticket page explaining the change, and (2) set the corresponding milestone date property on the Tickets database if one exists (Date PRD drafted, Date approved, Date in progress, Date shipped). This applies to odoo-module-dev, qa-edge-case-tester, notion-ticket-sync, and ticket-requirements-analyst alike -- log at every status transition, not just at the end.
+
+## Token efficiency is a standing priority, for every skill
+- Prefer a small, maintained reference/index over re-deriving the same information from scratch repeatedly (grepping the whole codebase, reading every historical record). If something is being re-derived often and no reference exists for it, create one and keep it updated -- don't just note the inefficiency and move on.
+- When querying Notion, always filter (by relation, by tag, by property) rather than pulling entire databases. Only fetch full page content for rows that actually matched a filter.
+- Local files are cheaper to read than MCP round-trips where either would work -- prefer a local index over a Notion query when the same information is available both places.
+- Don't re-read something already established earlier in the same session.
