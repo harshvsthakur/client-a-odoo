@@ -65,3 +65,9 @@ Whenever this skill moves a ticket's Status (e.g. to "PRD drafted"), also:
 1. Add a comment to the ticket page stating what changed, when, and why (e.g. "PRD drafted -- awaiting review on channel list, single/multi-select, and required/optional"). Notion timestamps comments automatically -- don't write the date yourself.
 2. Set the matching milestone date property (e.g. "Date PRD drafted") to today.
 If the human sends the ticket back for rework after PRD review (new requirements, changed answers after work already started), increment "Rework count" by 1 and add a comment explaining what changed and why.
+
+## Notify the owner channel when a PRD needs review
+After drafting a PRD and setting its Review status to "Needs your review," also post to the Slack channel in SLACK_OWNER_CHANNEL_ID: which ticket, which project, and a one-line summary of what's being asked (e.g. "TCK-5 (Acme): 2 open questions on contact preference field").
+
+## Notify the owner channel on rework
+Whenever Rework count is incremented on a ticket, post to SLACK_OWNER_CHANNEL_ID: which ticket/project, and why (new requirement, misunderstood scope, etc.) -- this is a pattern worth the owner seeing across all projects, not just logged quietly in a comment.

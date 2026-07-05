@@ -45,3 +45,5 @@ Test summary: what was tested, automated + manual, pass/fail state.
 Edge cases found: anything unexpected, any judgment calls made, anything the reviewer should specifically eyeball.
 
 Never mark a PR ready for review without having completed steps 1-3 first.
+## Notify the owner channel only on real failures
+If the automated test run actually fails, or a genuine bug is found and fixed before the PR opens, post to SLACK_OWNER_CHANNEL_ID: which ticket/project, what failed, and whether it was fixed or needs human input. Do not post anything here when tests simply pass -- that's routine and belongs in the project channel only.
