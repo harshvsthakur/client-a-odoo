@@ -82,3 +82,7 @@ Any skill that changes a ticket's Status must: (1) add a dated comment to the ti
 - When querying Notion, always filter (by relation, by tag, by property) rather than pulling entire databases. Only fetch full page content for rows that actually matched a filter.
 - Local files are cheaper to read than MCP round-trips where either would work -- prefer a local index over a Notion query when the same information is available both places.
 - Don't re-read something already established earlier in the same session.
+
+## What needs a PR vs. what can push directly to master
+Code changes (anything in addons/, docker-compose.yml, odoo.conf) always go through a branch + PR + review, no exceptions.
+Pure documentation/context files that don't affect the running application (.claude/context/*, CLAUDE.md itself, skill files) can be committed and pushed directly to master. Still show the human the diff before pushing, since accuracy is the only thing being checked -- but a full PR cycle for a documentation correction is unnecessary ceremony.
