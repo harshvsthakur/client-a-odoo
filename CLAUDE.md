@@ -60,3 +60,6 @@ Only use the "notion" (stdio, token-scoped) MCP server for anything Notion-relat
 Within Notion, only interact with the Tickets database under the Solopreneur Ops page (and its directly related PRDs / Release Notes / Project rows via that database's relations). Do not search, fetch, or reference any other Notion page or database, even if tools make it technically reachable.
 
 If the "notion" stdio server is unavailable in a given session, stop and tell the human rather than falling back to the claude.ai Notion connector.
+
+## Linking work to Notion tickets
+When a task originates from a Notion ticket, include its Ticket ID in the branch name and PR title, e.g. branch feature/TCK-3-priority-level-field, PR title "[TCK-3] Add priority_level field to res.partner". This is how merged PRs get linked back to Notion automatically.

@@ -34,3 +34,6 @@ Once a human says something like "merge PR #N" or "approved, merge it":
 4. `docker compose restart odoo`
 5. Confirm back to the human that it's live and ready for browser verification, and remind them to hard-refresh (Ctrl+Shift+R) since Odoo's asset bundles are cached aggressively.
 Never merge without an explicit human instruction to do so.
+
+## After merging, sync to Notion
+Once the merge-and-deploy sequence above completes, also apply the notion-ticket-sync skill if the PR is linked to a Ticket ID.

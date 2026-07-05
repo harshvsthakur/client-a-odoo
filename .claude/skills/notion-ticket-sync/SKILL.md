@@ -1,0 +1,36 @@
+---
+name: notion-ticket-sync
+description: Use after a PR is merged, when the PR is linked to a Notion ticket (Ticket ID like TCK-N appears in the branch name, PR title, or PR body) -- writes a Release Notes entry and marks the ticket Shipped.
+---
+
+# Notion ticket sync
+
+## When to run this
+After merging a PR, check whether the branch name, PR title, or PR body contains a Ticket ID matching the pattern TCK-<number> (e.g. TCK-3). This is how work is linked back to its originating Notion ticket.
+
+If no Ticket ID is present anywhere: skip this whole skill and tell the human the PR wasn't linked to a ticket, so Notion won't be updated automatically.
+
+## Step 1: find the ticket
+Using the notion MCP server (never claude.ai Notion), query the Tickets database under Solopreneur Ops for the row whose Ticket ID property matches. Read its Project relation while you're there -- you'll need it for the Release Notes entry.
+
+## Step 2: create the Release Notes entry
+Create a new row in the Release Notes & Feature Log database with:
+- Feature: a short human-readable name (use the PR title if it's already descriptive)
+- Project: same Project as the ticket (copy the relation)
+- Ticket: relation to the ticket found in Step 1
+- PR link: the GitHub PR URL
+- Date shipped: today's date
+- Test summary: copied from the PR description's "Test summary" section, verbatim
+- Edge cases found: copied from the PR description's "Edge cases found" section, verbatim
+- Delivered: checked
+
+Never paraphrase or shorten the Test summary / Edge cases found content -- copy it exactly, since it's already written for a human reader.
+
+## Step 3: update the ticket
+Set the ticket's Status to Shipped. Do not change any other ticket property.
+
+## Step 4: confirm back to the human
+State plainly: which ticket was updated, and a link to the new Release Notes row (or its title, if a direct link isn't available).
+
+## If anything is ambiguous
+If more than one ticket matches, or the Project relation is missing/unclear, stop and ask the human rather than guessing which record to update.
