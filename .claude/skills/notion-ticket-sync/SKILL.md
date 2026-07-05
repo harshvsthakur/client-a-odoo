@@ -46,3 +46,6 @@ When creating or linking a Project, also set its "GitHub repo" property to the r
 
 ## Also notify the project's Slack channel
 After updating the Release Notes entry and ticket Status, look up the ticket's Project record and read its "Slack channel" property. If present, post a short message there via chat.postMessage (SLACK_BOT_TOKEN env var) summarizing what shipped, with the PR link. If the Project has no Slack channel set, skip this step silently -- don't treat it as an error.
+
+## Tag every Release Notes entry with what it touched
+When creating a Release Notes entry, always set "Odoo models/modules touched" to the actual Odoo model(s) (e.g. res.partner, sale.order) and/or addon technical name(s) the change affected. This is required, not optional -- it's what makes future context-checking cheap instead of requiring every entry to be read in full.

@@ -78,3 +78,10 @@ As part of drafting the PRD, classify the work as one of: Trivial, Standard, Com
 - Standard (default): anything else contained to a single model.
 - Complex: computed fields, cross-model logic, workflow/approval logic, financial or quantity calculations, or anything client-facing/integration-related.
 Record this classification explicitly in the PRD's "Technical approach" field and in the ticket page body, with a one-line reason for the classification. Never leave it unstated.
+
+## Filter context checks by model/module, don't read everything
+Before reading Release Notes in full, first identify which Odoo model(s) or addon(s) the new ticket concerns. Query the Release Notes & Feature Log database filtered to rows where "Odoo models/modules touched" overlaps with those models -- only fetch full content for matching rows. Do not read every Release Notes entry in full "just in case."
+
+Similarly, when grepping addons/ for existing customizations, search specifically for the relevant model name(s) (e.g. grep for "res.partner" or the specific field/view names in question) rather than reading every module's full source. Only read a module's full contents if the targeted grep suggests it's actually relevant.
+
+If a ticket genuinely touches an unclear or broad set of models, it's fine to widen the search -- the goal is targeted, not artificially narrow.
