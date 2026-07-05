@@ -25,3 +25,12 @@ description: Use whenever writing, modifying, or reviewing custom Odoo modules i
 ## Testing before opening the PR
 - Where practical, install/update the module in the running dev database and confirm it loads without errors before pushing (`docker compose exec odoo odoo -i <module> -d harsh-test --stop-after-init`, then `docker compose restart odoo`).
 - Note any manual verification steps you weren't able to run yourself in the PR description, so the reviewer knows what to check.
+
+## When told to merge a PR
+Once a human says something like "merge PR #N" or "approved, merge it":
+1. `gh pr merge <N> --merge`
+2. `git checkout master && git pull`
+3. Update the module(s) in the dev database: `docker compose exec odoo odoo -u <module_name(s)> -d harsh-test --stop-after-init`
+4. `docker compose restart odoo`
+5. Confirm back to the human that it's live and ready for browser verification, and remind them to hard-refresh (Ctrl+Shift+R) since Odoo's asset bundles are cached aggressively.
+Never merge without an explicit human instruction to do so.
