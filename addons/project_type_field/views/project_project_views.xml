@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_project_form_project_type" model="ir.ui.view">
+        <field name="name">project.project.form.project.type</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="project_type" required="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_project_list_project_type" model="ir.ui.view">
+        <field name="name">project.project.list.project.type</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+            <field name="stage_id" position="after">
+                <field name="project_type" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_project_filter_project_type" model="ir.ui.view">
+        <field name="name">project.project.select.project.type</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="arch" type="xml">
+            <filter name="own_projects" position="after">
+                <filter string="Permanent" name="filter_project_type_permanent" domain="[('project_type', '=', 'permanent')]"/>
+                <filter string="SPAA" name="filter_project_type_spaa" domain="[('project_type', '=', 'spaa')]"/>
+            </filter>
+            <filter name="Manager" position="after">
+                <filter string="Project Type" name="groupby_project_type" context="{'group_by': 'project_type'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
