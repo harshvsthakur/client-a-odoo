@@ -49,3 +49,13 @@ Relevant existing modules/features found in addons/ and Release Notes, and how t
 Anything genuinely ambiguous that needs human input before building -- omit this heading entirely if there are none.
 
 Append this under the ticket's existing content rather than replacing anything already there. This makes the ticket readable on its own, without requiring someone to open the linked PRD record to understand the plan.
+
+## Link to real Notion pages, don't just name things
+Whenever referencing an existing module, prior ticket, or shipped feature as context (in the PRD's "Existing customizations checked" field or the ticket's "What's already built" section), include the actual Notion page URL for the relevant Release Notes entry or ticket, not just its name in prose. If something referenced doesn't have a Notion page (e.g. it only exists as code with no Release Notes entry), say so explicitly rather than fabricating a link.
+
+## When the human answers open questions
+Once the human responds to open questions (either by answering directly, or approving proposed defaults):
+1. Update the PRD's "Risks / open questions" field: don't erase the original questions, append the human's actual decision under each one.
+2. Append a "### Decisions" section to the ticket page body recording exactly what was decided and by whom (the human, via this conversation) -- this is the durable record of the judgment call, not just an implicit assumption baked into the code.
+3. Set the PRD's Review status to Approved.
+4. Only then proceed to odoo-module-dev.
