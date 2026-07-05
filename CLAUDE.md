@@ -66,3 +66,10 @@ When a task originates from a Notion ticket, include its Ticket ID in the branch
 
 ## Working a ticket -- always start with requirements analysis
 When asked to work on a ticket (e.g. "work on ticket TCK-N"), always apply ticket-requirements-analyst first. Do not write code until a PRD exists and its Review status is Approved. Only then apply odoo-module-dev, followed by qa-edge-case-tester, followed by the PR/merge/notion-ticket-sync flow already defined.
+
+## Documentation standard for future analysis
+Everything written to Notion (ticket bodies, PRDs, Release Notes) should assume it will be read and analyzed later without this conversation's context. This means:
+- Always link to real Notion pages/records referenced, never just name them in prose.
+- Always record explicit human decisions (not just proposed defaults that were silently accepted) as their own visible entry, not folded invisibly into other text.
+- Prefer structured headings over freeform paragraphs, so future analysis (by a human or an AI) can reliably find "what was decided," "what was tested," "what shipped" without re-reading everything.
+- When in doubt about whether something is worth writing down, write it down -- the cost of over-documenting a ticket is small; the cost of an undocumented decision six months from now is not.
