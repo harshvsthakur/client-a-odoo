@@ -75,6 +75,10 @@ Pure documentation/context (can push directly to master, after showing the human
 
 Dev database: `harsh-test` (same as "Testing" above). Command pattern comes from the `odoo-conventions:odoo-module-dev` skill; it also carries the cache-busting reminder (Odoo's asset bundles are cached aggressively -- hard-refresh with Ctrl+Shift+R after deploying).
 
+## Environments
+
+`local` only — the Docker stack on this machine (see "Deploying an update"). No staging or production exists for this project; a merged PR deployed locally is fully shipped.
+
 ## Visibility
 
 personal — this is Harsh's own Odoo testbed ("Odoo v18 Community Test"), not a client engagement. Its shipped work may be mined for public content (LinkedIn, showcase) in full technical detail, per the global Content Pipeline ground rules.
