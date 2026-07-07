@@ -8,6 +8,7 @@
         "security/ir.model.access.csv",
         "views/project_template_views.xml",
         "views/project_project_views.xml",
+        "views/project_task_views.xml",
     ],
     "installable": True,
     "application": False,
