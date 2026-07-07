@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Pick + Store: Production requests, Store validates, one internal transfer, source Store, dest Production -->
+        <record id="sequence_store_to_production" model="ir.sequence">
+            <field name="name">Store to Production</field>
+            <field name="prefix">S2P/</field>
+            <field name="padding">5</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="picking_type_store_to_production" model="stock.picking.type">
+            <field name="name">Store to Production</field>
+            <field name="code">internal</field>
+            <field name="sequence_code">S2P</field>
+            <field name="sequence_id" ref="sequence_store_to_production"/>
+            <field name="warehouse_id" ref="stock.warehouse0"/>
+            <field name="default_location_src_id" ref="stock_location_store"/>
+            <field name="default_location_dest_id" ref="stock_location_production_floor"/>
+        </record>
+
+        <!-- Consume: Production location to the Production Consumption virtual sink -->
+        <record id="sequence_production_consume" model="ir.sequence">
+            <field name="name">Production Consume</field>
+            <field name="prefix">CONS/</field>
+            <field name="padding">5</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="picking_type_production_consume" model="stock.picking.type">
+            <field name="name">Production Consume</field>
+            <field name="code">internal</field>
+            <field name="sequence_code">CONS</field>
+            <field name="sequence_id" ref="sequence_production_consume"/>
+            <field name="warehouse_id" ref="stock.warehouse0"/>
+            <field name="default_location_src_id" ref="stock_location_production_floor"/>
+            <field name="default_location_dest_id" ref="stock_location_production_consumption"/>
+        </record>
+
+    </data>
+</odoo>
