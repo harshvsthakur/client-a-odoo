@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sub-locations of WH/Stock: Store (raw materials holding) and Production (shop floor) -->
+        <record id="stock_location_store" model="stock.location">
+            <field name="name">Store</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_production_floor" model="stock.location">
+            <field name="name">Production</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <!--
+            Dedicated virtual sink for the Consume step, distinct from Odoo's own per-company
+            "Virtual Locations/Production" (usage='production') location: that one is created
+            dynamically per company with no stable external ID, so it can't be referenced
+            reliably from module data. This location is the Consume step's destination.
+        -->
+        <record id="stock_location_production_consumption" model="stock.location">
+            <field name="name">Production Consumption</field>
+            <field name="location_id" ref="stock.stock_location_locations_virtual"/>
+            <field name="usage">inventory</field>
+        </record>
+
+    </data>
+</odoo>

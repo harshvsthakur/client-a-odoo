@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--
+            Dedicated category for materials flowing through the Store/Production route.
+            AVCO + Automated (real_time) valuation, wired to the generic COA's existing
+            stock accounts and Inventory Valuation journal so the Consume move posts COGS.
+        -->
+        <record id="product_category_production_materials" model="product.category">
+            <field name="name">Production Materials</field>
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="property_cost_method">average</field>
+            <field name="property_valuation">real_time</field>
+            <field name="property_stock_valuation_account_id" ref="account.1_stock_valuation"/>
+            <field name="property_stock_account_input_categ_id" ref="account.1_stock_in"/>
+            <field name="property_stock_account_output_categ_id" ref="account.1_stock_out"/>
+            <field name="property_stock_journal" ref="account.1_inventory_valuation"/>
+        </record>
+
+    </data>
+</odoo>
