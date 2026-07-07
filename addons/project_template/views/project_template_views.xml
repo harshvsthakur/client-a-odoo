@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_project_template_form" model="ir.ui.view">
+        <field name="name">project.template.form</field>
+        <field name="model">project.template</field>
+        <field name="arch" type="xml">
+            <form string="Project Template">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Standard Implementation"/>
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="Task List" name="tasks">
+                            <field name="task_line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="start_offset"/>
+                                    <field name="end_offset"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Milestones" name="milestones">
+                            <field name="milestone_line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="deadline_offset"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_project_template_list" model="ir.ui.view">
+        <field name="name">project.template.list</field>
+        <field name="model">project.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_project_template" model="ir.actions.act_window">
+        <field name="name">Project Templates</field>
+        <field name="res_model">project.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_project_template"
+              name="Project Templates"
+              action="action_project_template"
+              parent="project.menu_project_config"
+              sequence="50"/>
+</odoo>
