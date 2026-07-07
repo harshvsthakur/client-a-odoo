@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Detailed project form -->
+    <record id="view_project_form_template" model="ir.ui.view">
+        <field name="name">project.project.form.template</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="template_id" required="1"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- "Create a Project" dialog (the primary UI entry point for new projects) -->
+    <record id="view_project_form_simplified_template" model="ir.ui.view">
+        <field name="name">project.project.view.form.simplified.template</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.project_project_view_form_simplified_footer"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='alias_def']" position="before">
+                <div class="mb-3">
+                    <label for="template_id" string="Template"/>
+                    <field name="template_id" required="1" placeholder="Select a template..."/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
