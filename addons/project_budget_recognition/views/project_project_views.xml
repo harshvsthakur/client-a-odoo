@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_project_form_budget_recognition" model="ir.ui.view">
+        <field name="name">project.project.form.budget.recognition</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <page name="analytic" position="after">
+                <page name="budget_recognition" string="Budget Recognition">
+                    <group>
+                        <group string="Costs">
+                            <field name="committed_cost"/>
+                            <field name="consumption_cost"/>
+                            <field name="cost_incurred"/>
+                            <field name="total_budgeted_cost"/>
+                        </group>
+                        <group string="Recognition">
+                            <field name="percent_complete" widget="percentage"/>
+                            <field name="sale_order_id" readonly="1"/>
+                            <field name="recognized_revenue"/>
+                            <field name="revenue_recognized_to_date"/>
+                        </group>
+                    </group>
+                    <button name="action_recognize_revenue"
+                            type="object"
+                            string="Recognize Revenue"
+                            class="btn-primary"/>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
