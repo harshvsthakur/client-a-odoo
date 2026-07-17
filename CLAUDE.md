@@ -81,16 +81,8 @@ Dev database: `harsh-test` (same as "Testing" above). Command pattern comes from
 
 ## Visibility
 
-personal — this is Harsh's own Odoo testbed ("Odoo v18 Community Test"), not a client engagement. Its shipped work may be mined for public content (LinkedIn, showcase) in full technical detail, per the global Content Pipeline ground rules.
+personal — this is Harsh's own Odoo testbed ("Odoo v18 Community Test"), not a client engagement. The "client-a" name (repo and elsewhere) is **simulated** — a role-played client used to exercise the pipeline end-to-end; no real client is behind it, which is why the GitHub repo is safely public. Its shipped work may be mined for public content (LinkedIn, showcase) in full technical detail, per the global Content Pipeline ground rules.
 
 ## Ticket workflow for this project
 
-When asked to work on a ticket, the pipeline is:
-
-1. `ticket-requirements-analyst` (global) -- PRD, requires human approval before proceeding.
-2. `odoo-conventions:odoo-module-dev` (project-type plugin, shared across every Odoo project) -- the actual module code and Odoo-specific conventions.
-3. `qa-edge-case-tester` (global) -- testing, using the commands above.
-4. `code-change-workflow` (global) -- branch, PR, and (once approved) merge and deploy.
-5. `notion-ticket-sync` (global) -- after merge, if the PR is linked to a ticket.
-
-See `~/.claude/CLAUDE.md` for the process rules (Notion scope, activity logging, documentation standard, token efficiency, PR policy, Notion formatting) that apply throughout this pipeline.
+Standard global pipeline (see "The ticket pipeline" in `~/.claude/CLAUDE.md`); this project's build skill (step 2) is `odoo-conventions:odoo-module-dev`, the shared type-tier plugin.
